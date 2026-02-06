@@ -28,11 +28,12 @@ app.get("/", (req, res) => {
 /* Создание платежа */
 app.post("/create-payment", async (req, res) => {
   try {
-    const { name, telegram, phone } = req.body;
+const { name, telegram } = req.body;
 
-    if (!name || !telegram || !phone) {
-      return res.status(400).json({ error: "Не все поля заполнены" });
-    }
+if (!name || !telegram) {
+  return res.status(400).json({ error: "Не все поля заполнены" });
+}
+
 
     const paymentData = {
       amount: {
@@ -45,7 +46,11 @@ app.post("/create-payment", async (req, res) => {
       },
       capture: true,
       description: "Интенсив «Детоксикация»",
-      metadata: { name, telegram, phone }
+metadata: {
+  name,
+  telegram
+}
+
     };
 
     const idempotenceKey = crypto.randomUUID();
