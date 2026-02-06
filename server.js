@@ -42,7 +42,7 @@ if (!name || !telegram) {
       },
       confirmation: {
         type: "redirect",
-        return_url: "http://localhost:3000/success"
+        return_url: "https://dks.gitverse.site/detox-backend/success.html"
       },
       capture: true,
       description: "Интенсив «Детоксикация»",
