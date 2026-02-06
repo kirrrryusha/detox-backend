@@ -103,7 +103,6 @@ app.post("/webhook", async (req, res) => {
 
 👤 Имя: ${name}
 📲 Telegram: ${telegram}
-📞 Телефон: ${phone}
 💵 Сумма: ${payment.amount.value} ₽
 🆔 Payment ID: ${payment.id}
 `;
