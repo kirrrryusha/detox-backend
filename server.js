@@ -36,25 +36,25 @@ if (!name || !telegram) {
 
 
     const paymentData = {
-      amount: {
-        value: "1.00",
-        currency: "RUB"
-      },
-        payment_method_data: {
+  amount: {
+    value: "499.00",
+    currency: "RUB"
+  },
+
+  payment_method_data: {
     type: "sbp"
   },
-      confirmation: {
-        type: "redirect",
-        return_url: "https://dks.gitverse.site/detox-backend/success.html"
-      },
-      capture: true,
-      description: "Интенсив «Детоксикация»",
-metadata: {
-  name,
-  telegram
-}
 
-    };
+  confirmation: {
+    type: "redirect",
+    return_url: "https://dks.gitverse.site/detox-backend/success.html"
+  },
+
+  capture: true,
+  description: "Интенсив «Детоксикация»",
+  metadata: { name, telegram }
+};
+
 
     const idempotenceKey = crypto.randomUUID();
 
