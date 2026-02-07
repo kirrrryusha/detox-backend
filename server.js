@@ -41,10 +41,6 @@ if (!name || !telegram) {
     currency: "RUB"
   },
 
-  payment_method_data: {
-    type: "sbp"
-  },
-
   confirmation: {
     type: "redirect",
     return_url: "https://dks.gitverse.site/detox-backend/success.html"
