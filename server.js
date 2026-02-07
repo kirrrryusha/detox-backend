@@ -37,7 +37,7 @@ if (!name || !telegram) {
 
     const paymentData = {
       amount: {
-        value: "499.00",
+        value: "1.00",
         currency: "RUB"
       },
       confirmation: {
