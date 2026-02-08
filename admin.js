@@ -36,14 +36,18 @@ function renderWebinars() {
 }
 
 function addWebinar() {
+  syncWebinarsFromForm(); // ⬅️ ВАЖНО
+
   config.webinars.push({
     date: "",
     time: "",
     title: "",
     description: ""
   });
+
   renderWebinars();
 }
+
 
 function removeWebinar(index) {
   config.webinars.splice(index, 1);
@@ -112,6 +116,7 @@ function syncWebinarsFromForm() {
     };
   });
 }
+
 
 
 
