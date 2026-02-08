@@ -97,5 +97,22 @@ function save() {
       }
     });
 }
+function syncWebinarsFromForm() {
+  const webinarNodes = document.querySelectorAll(".webinar");
+
+  config.webinars = Array.from(webinarNodes).map(w => {
+    const inputs = w.querySelectorAll("input");
+    const textarea = w.querySelector("textarea");
+
+    return {
+      date: inputs[0].value,
+      time: inputs[1].value,
+      title: inputs[2].value,
+      description: textarea ? textarea.value : ""
+    };
+  });
+}
+
+
 
 
