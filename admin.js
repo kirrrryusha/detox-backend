@@ -1,4 +1,5 @@
 let config = null;
+const DRAFT_KEY = "adminDraft";
 
 const heroDateInput = document.getElementById("heroDate");
 const priceInput = document.getElementById("price");
@@ -7,14 +8,26 @@ const secretInput = document.getElementById("secret");
 
 fetch("/config")
   .then(res => res.json())
-  .then(data => {
-    config = data;
+  .then(serverConfig => {
+
+    const draft = localStorage.getItem(DRAFT_KEY);
+
+    if (draft) {
+      console.log("📝 Загружен черновик из localStorage");
+      config = JSON.parse(draft);
+    } else {
+      config = serverConfig;
+    }
 
     heroDateInput.value = config.heroDate || "";
     priceInput.value = config.price;
 
     renderWebinars();
   });
+function saveDraft() {
+  localStorage.setItem(DRAFT_KEY, JSON.stringify(config));
+}
+
 
 function renderWebinars() {
   webinarsDiv.innerHTML = "";
@@ -36,7 +49,7 @@ function renderWebinars() {
 }
 
 function addWebinar() {
-  syncWebinarsFromForm(); // ⬅️ ВАЖНО
+  syncWebinarsFromForm();
 
   config.webinars.push({
     date: "",
@@ -45,16 +58,17 @@ function addWebinar() {
     description: ""
   });
 
+  saveDraft();
   renderWebinars();
 }
-
 
 function removeWebinar(index) {
-  syncWebinarsFromForm(); // ⬅️ ВАЖНО
-
+  syncWebinarsFromForm();
   config.webinars.splice(index, 1);
+  saveDraft();
   renderWebinars();
 }
+
 
 
 function save() {
@@ -99,6 +113,7 @@ function save() {
     .then(res => res.json())
     .then(data => {
       if (data.success) {
+          localStorage.removeItem(DRAFT_KEY);
         alert("Сохранено");
       } else {
         alert("Ошибка");
@@ -119,7 +134,19 @@ function syncWebinarsFromForm() {
       description: textarea ? textarea.value : ""
     };
   });
+
+  saveDraft();
 }
+document.addEventListener("input", () => {
+  if (!config) return;
+
+  config.heroDate = heroDateInput.value;
+  config.price = Number(priceInput.value) || 0;
+
+  syncWebinarsFromForm();
+});
+
+
 
 
 
