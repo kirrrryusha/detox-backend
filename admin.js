@@ -27,7 +27,7 @@ function renderWebinars() {
       <input placeholder="Дата" value="${w.date}">
       <input placeholder="Время" value="${w.time}">
       <input placeholder="Название" value="${w.title}">
-      <input placeholder="Описание" value="${w.description}">
+      <textarea placeholder="Описание">${w.description || ""}</textarea>
       <button onclick="removeWebinar(${i})">Удалить</button>
     `;
 
@@ -62,10 +62,14 @@ function save() {
 
   const webinars = Array.from(webinarNodes).map(w => {
     const inputs = w.querySelectorAll("input");
+    const textarea = w.querySelector("textarea");
+
     return {
       date: inputs[0].value,
       time: inputs[1].value,
-      title: inputs[2].value
+      title: inputs[2].value,
+      description: textarea.value
+
     };
   });
 
@@ -93,4 +97,5 @@ function save() {
       }
     });
 }
+
 
