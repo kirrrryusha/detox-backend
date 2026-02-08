@@ -50,11 +50,15 @@ function addWebinar() {
 
 
 function removeWebinar(index) {
+  syncWebinarsFromForm(); // ⬅️ ВАЖНО
+
   config.webinars.splice(index, 1);
   renderWebinars();
 }
 
+
 function save() {
+  syncWebinarsFromForm();
   const secret = secretInput.value;
 
   if (!secret) {
@@ -116,6 +120,7 @@ function syncWebinarsFromForm() {
     };
   });
 }
+
 
 
 
