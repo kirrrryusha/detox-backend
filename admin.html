@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Админка</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+    .webinar {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Админ-панель</h1>
+
+<label>Секрет</label>
+<input type="password" id="secret" placeholder="ADMIN_SECRET">
+
+<hr>
+
+<label>Дата в hero (бейдж)</label>
+<input type="text" id="heroDate" placeholder="16–22 февраля">
+
+<label>Цена</label>
+<input type="number" id="price">
+
+<h3>Вебинары</h3>
+<div id="webinars"></div>
+
+<button onclick="addWebinar()">➕ Добавить вебинар</button>
+
+<hr>
+
+<button onclick="save()">💾 Сохранить</button>
+
+<script src="admin.js"></script>
+</body>
+</html>
