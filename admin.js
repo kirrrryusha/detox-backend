@@ -27,6 +27,7 @@ function renderWebinars() {
       <input placeholder="Дата" value="${w.date}">
       <input placeholder="Время" value="${w.time}">
       <input placeholder="Название" value="${w.title}">
+      <input placeholder="Описание" value="${w.description}">
       <button onclick="removeWebinar(${i})">Удалить</button>
     `;
 
@@ -38,7 +39,8 @@ function addWebinar() {
   config.webinars.push({
     date: "",
     time: "",
-    title: ""
+    title: "",
+    description: ""
   });
   renderWebinars();
 }
@@ -91,3 +93,4 @@ function save() {
       }
     });
 }
+
